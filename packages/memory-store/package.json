@@ -1,0 +1,22 @@
+{
+  "name": "@ai-workflow/memory-store",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ai-workflow/database": "workspace:*",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@ai-workflow/config": "workspace:*",
+    "@types/node": "^22.13.9",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@ai-workflow/workflow-engine",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^1.1.9",
+    "@ai-sdk/google": "^1.1.16",
+    "@ai-sdk/openai": "^1.1.13",
+    "@ai-workflow/database": "workspace:*",
+    "@ai-workflow/memory-store": "workspace:*",
+    "@ai-workflow/tool-registry": "workspace:*",
+    "@langchain/core": "^0.3.42",
+    "@langchain/langgraph": "^0.2.54",
+    "ai": "^4.1.54",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@ai-workflow/config": "workspace:*",
+    "@types/node": "^22.13.9",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}

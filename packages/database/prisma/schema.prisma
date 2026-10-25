@@ -1,0 +1,85 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+enum CheckpointStatus {
+  RUNNING
+  AWAITING_APPROVAL
+  COMPLETED
+  FAILED
+}
+
+model WorkflowThread {
+  id           String               @id @default(cuid())
+  title        String
+  workflowType String               @default("plan_execute_reflect")
+  metadata     Json                 @default("{}")
+  summary      String?
+  totalTokens  Int                  @default(0)
+  totalCostUsd Float                @default(0.0)
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  checkpoints  WorkflowCheckpoint[]
+  audits       ToolExecutionAudit[]
+  memoryChunks MemoryChunk[]
+
+  @@index([workflowType])
+  @@index([createdAt])
+}
+
+model WorkflowCheckpoint {
+  id            String           @id @default(cuid())
+  threadId      String
+  stepNumber    Int
+  nodeName      String
+  stateSnapshot Json
+  status        CheckpointStatus @default(RUNNING)
+  createdAt     DateTime         @default(now())
+  thread        WorkflowThread   @relation(fields: [threadId], references: [id], onDelete: Cascade)
+
+  @@index([threadId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model MemoryChunk {
+  id        String                 @id @default(cuid())
+  threadId  String?
+  namespace String                 @default("default")
+  content   String
+  metadata  Json                   @default("{}")
+  embedding Unsupported("vector(1536)")?
+  createdAt DateTime               @default(now())
+  thread    WorkflowThread?        @relation(fields: [threadId], references: [id], onDelete: Cascade)
+
+  @@index([threadId])
+  @@index([namespace])
+  @@index([createdAt])
+}
+
+model ToolExecutionAudit {
+  id               String          @id @default(cuid())
+  threadId         String?
+  stepId           String?
+  toolName         String
+  args             Json            @default("{}")
+  result           Json?
+  latencyMs        Int
+  status           String
+  requiresApproval Boolean         @default(false)
+  approvedBy       String?
+  createdAt        DateTime        @default(now())
+  thread           WorkflowThread? @relation(fields: [threadId], references: [id], onDelete: Cascade)
+
+  @@index([threadId])
+  @@index([toolName])
+  @@index([status])
+  @@index([createdAt])
+}

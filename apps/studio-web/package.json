@@ -1,0 +1,35 @@
+{
+  "name": "studio-web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "typecheck": "tsc --noEmit",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ai-sdk/react": "^1.1.18",
+    "@ai-workflow/database": "workspace:*",
+    "@ai-workflow/memory-store": "workspace:*",
+    "@ai-workflow/tool-registry": "workspace:*",
+    "@ai-workflow/workflow-engine": "workspace:*",
+    "ai": "^4.1.54",
+    "lucide-react": "^0.475.0",
+    "next": "^15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@ai-workflow/config": "workspace:*",
+    "@types/node": "^22.13.9",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.2"
+  }
+}

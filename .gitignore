@@ -1,0 +1,24 @@
+node_modules
+.pnpm-store
+dist
+.next
+out
+build
+coverage
+*.log
+.DS_Store
+*.tsbuildinfo
+.turbo
+
+# Environment variables
+.env
+.env*.local
+!.env.example
+
+# Vitest
+.vitest-results
+
+# SQLite / Local temp DBs if any
+*.sqlite
+*.sqlite3
+*.db

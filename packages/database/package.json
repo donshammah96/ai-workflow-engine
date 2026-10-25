@@ -1,0 +1,24 @@
+{
+  "name": "@ai-workflow/database",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@ai-workflow/config": "workspace:*",
+    "@types/node": "^22.13.9",
+    "prisma": "^6.4.1",
+    "typescript": "^5.8.2"
+  }
+}

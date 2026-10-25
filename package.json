@@ -1,0 +1,28 @@
+{
+  "name": "ai-workflow-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-grade multi-step AI workflow engine with LangGraph, Vercel AI SDK, dual-tier pgvector memory, and Generative UI",
+  "license": "MIT",
+  "author": "Don Shammah <donshammah1@gmail.com>",
+  "packageManager": "pnpm@11.5.3",
+  "scripts": {
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "dev": "turbo run dev --parallel",
+    "docker:up": "docker compose -f docker/docker-compose.yml up -d",
+    "docker:down": "docker compose -f docker/docker-compose.yml down",
+    "db:generate": "pnpm --filter @ai-workflow/database db:generate",
+    "db:push": "pnpm --filter @ai-workflow/database db:push",
+    "db:migrate": "pnpm --filter @ai-workflow/database db:migrate"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}
